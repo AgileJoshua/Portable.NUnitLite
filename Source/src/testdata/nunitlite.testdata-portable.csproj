@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E2C44E0E-FEDA-49E9-A724-2755D68840CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NUnit.TestData</RootNamespace>
+    <AssemblyName>nunitlite.testdata</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile104</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE;NUNITLITE;CLR_4_0;NET_4_0;SILVERLIGHT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;PORTABLE;NUNITLITE;CLR_4_0;NET_4_0;SILVERLIGHT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\framework\nunitlite-portable.csproj">
+      <Project>{5398ee3f-bf0c-4d0c-989b-6e23dc0b9631}</Project>
+      <Name>nunitlite-portable</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AssertCountFixture.cs" />
+    <Compile Include="AssertFailFixture.cs" />
+    <Compile Include="AssertIgnoreData.cs" />
+    <Compile Include="AsyncDummyFixture.cs" />
+    <Compile Include="AsyncRealFixture.cs" />
+    <Compile Include="AttributeInheritanceData.cs" />
+    <Compile Include="CategoryAttributeData.cs" />
+    <Compile Include="CultureAttributeData.cs" />
+    <Compile Include="DatapointFixture.cs" />
+    <Compile Include="DescriptionFixture.cs" />
+    <Compile Include="ExpectedExceptionData.cs" />
+    <Compile Include="FixtureSetUpTearDownData.cs" />
+    <Compile Include="MaxTimeFixture.cs" />
+    <Compile Include="ParameterizedTestFixture.cs" />
+    <Compile Include="PropertyAttributeTests.cs" />
+    <Compile Include="RepeatedTestFixture.cs" />
+    <Compile Include="SetUpData.cs" />
+    <Compile Include="TestCaseAttributeFixture.cs" />
+    <Compile Include="TestCaseSourceAttributeFixture.cs" />
+    <Compile Include="TestContextData.cs" />
+    <Compile Include="TestFixtureData.cs" />
+    <Compile Include="TestMethodSignatureFixture.cs" />
+    <Compile Include="TheoryFixture.cs" />
+    <Compile Include="TimeoutFixture.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
