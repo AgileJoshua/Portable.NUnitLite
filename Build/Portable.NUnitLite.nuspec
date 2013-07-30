@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>Portable.NUnitLite</id>
+		<version>0.0.0</version>
+		<authors>Matthias Gernand</authors>
+		<owners>Matthias Gernand</owners>
+		<licenseUrl>https://github.com/mgernand/Portable.NUnitLite/blob/master/LICENSE</licenseUrl>
+		<projectUrl>https://github.com/mgernand/Portable.NUnitLite</projectUrl>
+		<!--<iconUrl></iconUrl>-->
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Portable version of the NUnitLite project.</description>
+		<summary></summary>
+		<language>en-US</language>
+		<tags></tags>
+		<dependencies>
+		</dependencies>
+		<frameworkAssemblies>
+		</frameworkAssemblies>
+	</metadata>
+	<files>
+		<!-- Add nuget package files -->
+		<file src="nunitlite.dll" target="lib\portable-win+net45+MonoAndroid16+MonoMac40+MonoTouch40+sl40+wp71\nunitlite.dll" />
+		<file src="Portable.Reflection.dll" target="lib\portable-win+net45+MonoAndroid16+MonoMac40+MonoTouch40+sl40+wp71\Portable.Reflection.dll" />
+	</files>
+</package>

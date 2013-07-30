@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="..\Tools\MSBuild\MSBuild.Community.Tasks.Targets"/>
+	
+	<PropertyGroup>
+		<!-- Override path to custom build tasks -->
+		<MSBuildCommunityTasksPath>..\Tools\MSBuild</MSBuildCommunityTasksPath>
+		<MSBuildCommunityTasksLib>MSBuild.Community.Tasks.dll</MSBuildCommunityTasksLib>
+		<!-- Version properties -->
+		<Major>1</Major>
+		<Minor>0</Minor>
+		<Build>0</Build>
+		<Revision>0</Revision>
+		<!-- Path properties -->
+		<SourceFolder>..\Source</SourceFolder>
+		<OutputFolder>..\Output</OutputFolder>
+		<ReleaseFolder>..\Output</ReleaseFolder>
+		<NuGetBinFolder>..\Source\.nuget</NuGetBinFolder>
+		<!-- Solution properties -->
+		<SolutionName>Portable.NUnitLite</SolutionName>
+		<ProductName></ProductName>
+	</PropertyGroup>
+
+	<!-- NuGet settings -->
+	<ItemGroup>
+		<NuSpecFiles Include="*.nuspec" />
+	</ItemGroup>
+
+	<Target Name="Build" DependsOnTargets="Clean">
+		<MSBuild BuildInParallel="true"
+				 Projects="$(SourceFolder)\$(SolutionName).sln"
+				 Targets="Rebuild"
+				 Properties="Configuration=Release;OutputPath=..\..\$(OutputFolder)">
+		</MSBuild>
+	</Target>
+
+	<Target Name="Release">
+		<Copy SourceFiles="@(NuSpecFiles)" DestinationFolder="$(OutputFolder)" />
+	
+		<!-- Insert the version number into the nuspec files and create nuget packages -->
+		<ItemGroup>
+			<NuSpecVersionedFiles Include="$(OutputFolder)\*.nuspec" />
+		</ItemGroup>
+		<NuGetPack ToolPath="$(NuGetBinFolder)"
+				   WorkingDirectory="$(OutputFolder)"
+				   File="%(NuSpecVersionedFiles.FullPath)"
+				   Version="$(Major).$(Minor).$(Build)"
+				   OutputDirectory="$(ReleaseFolder)"/> 
+	</Target>
+
+	<Target Name="Clean">
+		<RemoveDir Directories="$(OutputFolder)" />
+	</Target>
+</Project>
