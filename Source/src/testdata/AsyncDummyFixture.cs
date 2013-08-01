@@ -1,4 +1,4 @@
-#if NET_4_5
+#if NET_4_5 && !PORTABLE
 using System.Threading.Tasks;
 using NUnit.Framework;
 using System;

@@ -389,7 +389,7 @@ namespace NUnit.TestData.TestFixtureData
 		public void Teardown(int j) { }
 	}
 
-#if !NETCF && !SILVERLIGHT
+#if !NETCF && !SILVERLIGHT && !PORTABLE
     [TestFixture]
     public class FixtureThatChangesTheCurrentPrincipal
     {
@@ -405,7 +405,7 @@ namespace NUnit.TestData.TestFixtureData
 
 #if CLR_2_0 || CLR_4_0
 #if !NETCF
-    [TestFixture(typeof(int))]
+	[TestFixture(typeof(int))]
     [TestFixture(typeof(string))]
     public class GenericFixtureWithProperArgsProvided<T>
     {

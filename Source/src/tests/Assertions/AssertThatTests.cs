@@ -41,7 +41,7 @@ namespace NUnit.Framework.Assertions
     [TestFixture]
     public class AssertThatTests
     {
-        [Test]
+	    [Test]
         public void AssertionPasses_Boolean()
         {
             Assert.That(2 + 2 == 4);

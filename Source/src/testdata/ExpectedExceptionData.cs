@@ -180,7 +180,7 @@ namespace NUnit.TestData.ExpectedExceptionData
 		[ExpectedException(typeof(ArgumentOutOfRangeException)) ]
 		public void TestThrow()
 		{
-#if NETCF || SILVERLIGHT
+#if NETCF || SILVERLIGHT || PORTABLE
 			throw new ArgumentOutOfRangeException("param", "the message");
 #else
 			throw new ArgumentOutOfRangeException("param", "actual value", "the message");
