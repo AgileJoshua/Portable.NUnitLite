@@ -10,7 +10,7 @@
 		<Major>1</Major>
 		<Minor>0</Minor>
 		<Build>0</Build>
-		<Revision>0</Revision>
+		<Revision>1</Revision>
 		<!-- Path properties -->
 		<SourceFolder>..\Source</SourceFolder>
 		<OutputFolder>..\Output</OutputFolder>
@@ -18,7 +18,7 @@
 		<NuGetBinFolder>..\Source\.nuget</NuGetBinFolder>
 		<!-- Solution properties -->
 		<SolutionName>Portable.NUnitLite</SolutionName>
-		<ProductName></ProductName>
+		<ProductName>A portable version of the NUnitLite.</ProductName>
 	</PropertyGroup>
 
 	<!-- NuGet settings -->
@@ -44,7 +44,7 @@
 		<NuGetPack ToolPath="$(NuGetBinFolder)"
 				   WorkingDirectory="$(OutputFolder)"
 				   File="%(NuSpecVersionedFiles.FullPath)"
-				   Version="$(Major).$(Minor).$(Build)"
+				   Version="$(Major).$(Minor).$(Build).$(Revision)"
 				   OutputDirectory="$(ReleaseFolder)"/> 
 	</Target>
 

@@ -10,9 +10,9 @@
 		<!--<iconUrl></iconUrl>-->
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>Portable version of the NUnitLite project.</description>
-		<summary></summary>
+		<summary>This package is an unofficial PCL build of the NUnitLite project. Visit http://nunitlite.org/ for the official builds.</summary>
 		<language>en-US</language>
-		<tags></tags>
+		<tags>nunit nunitlite portable test</tags>
 		<dependencies>
 		</dependencies>
 		<frameworkAssemblies>
