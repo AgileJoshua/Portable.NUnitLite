@@ -21,7 +21,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-#if (CLR_2_0 || CLR_4_0) && !NETCF && !SILVERLIGHT
+#if (CLR_2_0 || CLR_4_0) && !NETCF && !SILVERLIGHT && !PORTABLE
 using System;
 using System.Threading;
 

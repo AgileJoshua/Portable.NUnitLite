@@ -136,11 +136,11 @@ namespace NUnit.Framework.Internal
         internal bool IsAsync
         {
             get
-            {
-#if NET_4_5
+			{
+#if NET_4_5 && !PORTABLE
                 return method.IsDefined(typeof(System.Runtime.CompilerServices.AsyncStateMachineAttribute), false);
 #else
-                return false;
+				return false;
 #endif
             }
         }

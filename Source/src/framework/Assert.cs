@@ -602,7 +602,7 @@ namespace NUnit.Framework
         {
             Exception caughtException = null;
 
-#if NET_4_5
+#if NET_4_5 && !PORTABLE
             if (AsyncInvocationRegion.IsAsyncOperation(code))
             {
                 using (AsyncInvocationRegion region = AsyncInvocationRegion.Create(code))
@@ -621,7 +621,7 @@ namespace NUnit.Framework
             }
             else
 #endif
-                try
+			try
             {
                 code();
             }

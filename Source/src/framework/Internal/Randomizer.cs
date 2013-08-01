@@ -142,10 +142,10 @@ namespace NUnit.Framework.Internal
             if (!enumType.IsEnum)
                 throw new ArgumentException(string.Format("The specified type: {0} was not an enum", enumType));
 
-#if !NETCF && !SILVERLIGHT
+#if !NETCF && !SILVERLIGHT && !PORTABLE
             Array values = Enum.GetValues(enumType);
 #else
-            Array values = TypeHelper.GetEnumValues(enumType);
+			Array values = TypeHelper.GetEnumValues(enumType);
 #endif
             object[] rvals = new Enum[count];
 

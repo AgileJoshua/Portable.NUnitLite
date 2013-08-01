@@ -41,9 +41,9 @@ namespace NUnit.Framework
 		/// current exception</param>
 		public IgnoreException(string message, Exception inner) :
 			base(message, inner) 
-		{}
+		{ }
 
-#if !NETCF && !SILVERLIGHT
+#if !NETCF && !SILVERLIGHT && !PORTABLE
 		/// <summary>
 		/// Serialization Constructor
 		/// </summary>

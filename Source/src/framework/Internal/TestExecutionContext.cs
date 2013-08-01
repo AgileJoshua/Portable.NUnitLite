@@ -53,7 +53,7 @@ namespace NUnit.Framework.Internal
 	/// object on the top of the stack.
 	/// </summary>
 	public class TestExecutionContext
-#if !SILVERLIGHT && !NETCF
+#if !SILVERLIGHT && !NETCF && !PORTABLE
         : ILogicalThreadAffinative
 #endif
 	{
@@ -181,7 +181,7 @@ namespace NUnit.Framework.Internal
             this.currentUICulture = CultureInfo.CurrentUICulture;
 #endif
 
-#if !NETCF && !SILVERLIGHT
+#if !NETCF && !SILVERLIGHT && !PORTABLE
 			this.outWriter = Console.Out;
 			this.errorWriter = Console.Error;
             this.traceWriter = null;
@@ -194,7 +194,7 @@ namespace NUnit.Framework.Internal
             this.logCapture = new Log4NetCapture();
             this.currentPrincipal = Thread.CurrentPrincipal;
 #endif
-        }
+		}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TestExecutionContext"/> class.
@@ -239,7 +239,7 @@ namespace NUnit.Framework.Internal
         /// <summary>
         /// The current context, head of the list of saved contexts.
         /// </summary>
-#if SILVERLIGHT || NETCF
+#if SILVERLIGHT || NETCF || PORTABLE
 #if (CLR_2_0 || CLR_4_0) && !NETCF && !PORTABLE
         [ThreadStatic]
 #endif
@@ -254,7 +254,7 @@ namespace NUnit.Framework.Internal
         {
             get 
             {
-#if SILVERLIGHT || NETCF
+#if SILVERLIGHT || NETCF || PORTABLE
                 if (current == null)
                     current = new TestExecutionContext();
 
@@ -271,7 +271,7 @@ namespace NUnit.Framework.Internal
 
         internal static void SetCurrentContext(TestExecutionContext ec)
         {
-#if SILVERLIGHT || NETCF
+#if SILVERLIGHT || NETCF || PORTABLE
             current = ec;
 #else
             CallContext.SetData("NUnit.Framework.TestContext", ec);
@@ -408,7 +408,7 @@ namespace NUnit.Framework.Internal
         }
 #endif
 
-#if !NETCF && !SILVERLIGHT
+#if !NETCF && !SILVERLIGHT && !PORTABLE
         /// <summary>
 		/// Controls where Console.Out is directed
 		/// </summary>
@@ -552,11 +552,11 @@ namespace NUnit.Framework.Internal
 		}
 #endif
 
-        #endregion
+		#endregion
 
-        #region Instance Methods
+		#region Instance Methods
 
-        /// <summary>
+		/// <summary>
         /// Saves the old context and returns a fresh one 
         /// with the same settings.
         /// </summary>
@@ -581,7 +581,7 @@ namespace NUnit.Framework.Internal
             this.CurrentUICulture = prior.CurrentUICulture;
 #endif
 
-#if !NETCF && !SILVERLIGHT
+#if !NETCF && !SILVERLIGHT && !PORTABLE
             this.Out = prior.Out;
             this.Error = prior.Error;
             this.Tracing = prior.Tracing;
@@ -592,7 +592,7 @@ namespace NUnit.Framework.Internal
 			this.CurrentPrincipal = prior.CurrentPrincipal;
 #endif
 
-            return prior;
+			return prior;
         }
 
         /// <summary>

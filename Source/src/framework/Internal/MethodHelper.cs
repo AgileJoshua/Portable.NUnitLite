@@ -210,9 +210,9 @@ namespace NUnit.Framework.Internal
                 default:
                     return c.ToString();
             }
-        }
+		}
 
-#if NET_4_5
+#if NET_4_5 && !PORTABLE
         /// <summary>
         /// Returns true if the method specified by the argument
         /// is an async method.
@@ -222,5 +222,5 @@ namespace NUnit.Framework.Internal
             return method.IsDefined(typeof(System.Runtime.CompilerServices.AsyncStateMachineAttribute));
         }
 #endif
-    }
+	}
 }

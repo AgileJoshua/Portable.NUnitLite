@@ -117,7 +117,7 @@ namespace NUnit.Framework.Internal.WorkItems
         {
             _context = new TestExecutionContext(context);
 
-#if (CLR_2_0 || CLR_4_0) && !NETCF && !SILVERLIGHT
+#if (CLR_2_0 || CLR_4_0) && !NETCF && !SILVERLIGHT && !PORTABLE
             // Timeout set at a higher level
             int timeout = _context.TestCaseTimeout;
 
@@ -130,11 +130,11 @@ namespace NUnit.Framework.Internal.WorkItems
             else
                 RunTest();
 #else
-            RunTest();
+			RunTest();
 #endif
         }
 
-#if (CLR_2_0 || CLR_4_0) && !NETCF && !SILVERLIGHT
+#if (CLR_2_0 || CLR_4_0) && !NETCF && !SILVERLIGHT && !PORTABLE
         private void RunTestWithTimeout(int timeout)
         {
             Thread thread = new Thread(new ThreadStart(RunTest));
@@ -167,7 +167,7 @@ namespace NUnit.Framework.Internal.WorkItems
         }
 #endif
 
-        private void RunTest()
+		private void RunTest()
         {
             _context.CurrentTest = this.Test;
             _context.CurrentResult = this.Result;
@@ -176,22 +176,22 @@ namespace NUnit.Framework.Internal.WorkItems
 
             TestExecutionContext.SetCurrentContext(_context);
 
-#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0
+#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0 && !PORTABLE
             long startTicks = Stopwatch.GetTimestamp();
 #endif
 
-            try
+			try
             {
                 PerformWork();
             }
             finally
-            {
-#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0
+			{
+#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0 && !PORTABLE
                 long tickCount = Stopwatch.GetTimestamp() - startTicks;
                 double seconds = (double)tickCount / Stopwatch.Frequency;
                 Result.Duration = TimeSpan.FromSeconds(seconds);
 #else
-                Result.Duration = DateTime.Now - Context.StartTime;
+				Result.Duration = DateTime.Now - Context.StartTime;
 #endif
 
                 Result.AssertCount = _context.AssertCount;

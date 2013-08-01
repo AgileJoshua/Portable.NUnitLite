@@ -405,8 +405,10 @@ namespace NUnit.Framework.Internal
 #if !PORTABLE
             if (ex is System.Threading.ThreadAbortException)
                 SetResult(ResultState.Cancelled, "Test cancelled by user", ex.StackTrace);
+
+			else 
 #endif
-			else if (ex is AssertionException)
+			if (ex is AssertionException)
                 SetResult(ResultState.Failure, ex.Message, StackFilter.Filter(ex.StackTrace));
             else if (ex is IgnoreException)
                 SetResult(ResultState.Ignored, ex.Message, StackFilter.Filter(ex.StackTrace));

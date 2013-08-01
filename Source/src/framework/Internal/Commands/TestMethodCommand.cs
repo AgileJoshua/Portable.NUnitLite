@@ -79,8 +79,8 @@ namespace NUnit.Framework.Internal.Commands
         }
 
         private object RunTestMethod(TestExecutionContext context)
-        {
-#if NET_4_5
+		{
+#if NET_4_5 && !PORTABLE
             if (MethodHelper.IsAsyncMethod(testMethod.Method))
                 return RunAsyncTestMethod(context);
             //{
@@ -91,10 +91,10 @@ namespace NUnit.Framework.Internal.Commands
             //}
             else
 #endif
-                return RunNonAsyncTestMethod(context);
+			return RunNonAsyncTestMethod(context);
         }
 
-#if NET_4_5
+#if NET_4_5 && !PORTABLE
         private object RunAsyncTestMethod(TestExecutionContext context)
         {
             using (AsyncInvocationRegion region = AsyncInvocationRegion.Create(testMethod.Method))
@@ -113,7 +113,7 @@ namespace NUnit.Framework.Internal.Commands
         }
 #endif
 
-        private object RunNonAsyncTestMethod(TestExecutionContext context)
+		private object RunNonAsyncTestMethod(TestExecutionContext context)
         {
             return Reflect.InvokeMethod(testMethod.Method, context.TestObject, arguments);
         }

@@ -17,10 +17,10 @@ namespace NUnit.Framework.Internal
         /// strB is sorted first</returns>
         public static int Compare(string strA, string strB, bool ignoreCase)
         {
-#if PORTABLE && SILVERLIGHT
+#if PORTABLE
 			StringComparison comparison = ignoreCase ? StringComparison.CurrentCultureIgnoreCase : StringComparison.CurrentCulture;
             return string.Compare(strA, strB, comparison);
-#elif SILVERLIGHT && !PORTABLE
+#elif SILVERLIGHT
             StringComparison comparison = ignoreCase ? StringComparison.InvariantCultureIgnoreCase : StringComparison.InvariantCulture;
             return string.Compare(strA, strB, comparison);
 #else

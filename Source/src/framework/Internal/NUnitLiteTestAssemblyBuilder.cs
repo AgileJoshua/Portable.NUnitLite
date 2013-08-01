@@ -52,12 +52,12 @@ namespace NUnit.Framework.Internal
             IList fixtures = GetFixtures(assembly, fixtureNames);
 
             if (fixtures.Count > 0)
-            {
-#if NETCF || SILVERLIGHT
+			{
+#if NETCF || SILVERLIGHT || PORTABLE
                 AssemblyName assemblyName = AssemblyHelper.GetAssemblyName(assembly);
                 return BuildTestAssembly(assemblyName.Name, fixtures);
-#else   
-                string assemblyPath = AssemblyHelper.GetAssemblyPath(assembly);
+#else
+				string assemblyPath = AssemblyHelper.GetAssemblyPath(assembly);
                 return BuildTestAssembly(assemblyPath, fixtures);
 #endif
             }
@@ -92,7 +92,7 @@ namespace NUnit.Framework.Internal
 
         private Assembly Load(string path)
         {
-#if NETCF || SILVERLIGHT
+#if NETCF || SILVERLIGHT || PORTABLE
             return Assembly.Load(path);
 #else
             // Throws if this isn't a managed assembly or if it was built
@@ -186,7 +186,7 @@ namespace NUnit.Framework.Internal
             testAssembly.ApplyAttributesToTest(assembly);
 #endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !PORTABLE
             testAssembly.Properties.Set(PropertyNames.ProcessID, System.Diagnostics.Process.GetCurrentProcess().Id);
 #endif
 

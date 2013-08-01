@@ -21,7 +21,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 // ***********************************************************************
 
-#if !CLR_4_0 || SILVERLIGHT
+#if !CLR_4_0 || SILVERLIGHT || PORTABLE
 using System.Threading;
 
 namespace NUnit.Framework.Internal.WorkItems

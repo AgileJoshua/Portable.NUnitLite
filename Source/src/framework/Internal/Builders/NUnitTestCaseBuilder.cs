@@ -28,7 +28,7 @@ using NUnit.Framework.Internal;
 using NUnit.Framework.Extensibility;
 using NUnit.Framework.Internal.Commands;
 
-#if NET_4_5
+#if NET_4_5 && !PORTABLE
 using System.Threading.Tasks;
 #endif
 
@@ -319,8 +319,8 @@ namespace NUnit.Framework.Builders
                     return MarkAsNotRunnable(testMethod, "Method returning void cannot have an expected result");
             }
             else
-            {
-#if NET_4_5
+			{
+#if NET_4_5 && !PORTABLE
                 if (MethodHelper.IsAsyncMethod(testMethod.Method))
                 {
                     bool returnsGenericTask = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Task<>);
@@ -331,7 +331,7 @@ namespace NUnit.Framework.Builders
                 }
                 else 
 #endif
-                if (parms == null || !parms.HasExpectedResult && !parms.ExceptionExpected)
+				if (parms == null || !parms.HasExpectedResult && !parms.ExceptionExpected)
                     return MarkAsNotRunnable(testMethod, "Method has non-void return value, but no result is expected");
             }
 

@@ -84,12 +84,12 @@ namespace NUnit.Framework.Internal.Commands
                 context.CurrentResult = innerCommand.Execute(context);
             }
             catch (Exception ex)
-            {
-#if !NETCF && !SILVERLIGHT
+			{
+#if !NETCF && !SILVERLIGHT && !PORTABLE
                 if (ex is ThreadAbortException)
                     Thread.ResetAbort();
 #endif
-                context.CurrentResult.RecordException(ex);
+				context.CurrentResult.RecordException(ex);
             }
             finally
             {

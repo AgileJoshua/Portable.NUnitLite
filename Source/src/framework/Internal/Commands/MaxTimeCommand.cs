@@ -56,19 +56,19 @@ namespace NUnit.Framework.Internal.Commands
             // duration of the test because that calculation is 
             // normally performed at a higher level. Most likely,
             // we should move the maxtime calculation to the
-            // higher level eventually.
-#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0
+			// higher level eventually.
+#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0 && !PORTABLE
             long startTicks = Stopwatch.GetTimestamp();
 #endif
 
-            TestResult testResult = innerCommand.Execute(context);
+			TestResult testResult = innerCommand.Execute(context);
 
-#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0
+#if (CLR_2_0 || CLR_4_0) && !SILVERLIGHT && !NETCF_2_0 && !PORTABLE
             long tickCount = Stopwatch.GetTimestamp() - startTicks;
             double seconds = (double)tickCount / Stopwatch.Frequency;
             testResult.Duration = TimeSpan.FromSeconds(seconds);
 #else
-            testResult.Duration = DateTime.Now - context.StartTime;
+			testResult.Duration = DateTime.Now - context.StartTime;
 #endif
 
             if (testResult.ResultState == ResultState.Success)

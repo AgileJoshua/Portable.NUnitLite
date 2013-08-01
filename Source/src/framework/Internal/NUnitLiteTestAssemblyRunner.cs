@@ -123,7 +123,7 @@ namespace NUnit.Framework.Internal
             if (this.settings.Contains("WorkDirectory"))
                 context.WorkDirectory = (string)this.settings["WorkDirectory"];
             else
-#if NETCF || SILVERLIGHT
+#if NETCF || SILVERLIGHT || PORTABLE
                 context.WorkDirectory = Env.DocumentFolder;
 #else
                 context.WorkDirectory = Environment.CurrentDirectory;

@@ -63,12 +63,12 @@ namespace NUnit.Framework.Internal.Commands
                     ProcessNoException(context);
             }
             catch (Exception ex)
-            {
-#if !NETCF && !SILVERLIGHT
+			{
+#if !NETCF && !SILVERLIGHT && !PORTABLE
                 if (ex is ThreadAbortException)
                     Thread.ResetAbort();
 #endif
-                ProcessException(ex, context);
+				ProcessException(ex, context);
             }
 
             return context.CurrentResult;

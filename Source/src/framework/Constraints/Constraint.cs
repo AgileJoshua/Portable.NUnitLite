@@ -188,13 +188,13 @@ namespace NUnit.Framework.Constraints
         /// <param name="del">An <see cref="ActualValueDelegate{T}" /></param>
         /// <returns>True for success, false for failure</returns>
         public virtual bool Matches<T>(ActualValueDelegate<T> del)
-        {
-#if NET_4_5
+		{
+#if NET_4_5 && !PORTABLE
             if (AsyncInvocationRegion.IsAsyncOperation(del))
                 using (var region = AsyncInvocationRegion.Create(del))
                     return Matches(region.WaitForPendingOperationsToComplete(del()));
 #endif
-            return Matches(del());
+			return Matches(del());
         }
 #else
         /// <summary>
@@ -375,7 +375,7 @@ namespace NUnit.Framework.Constraints
 
         #region After Modifier
 
-#if !NETCF && !SILVERLIGHT
+#if !NETCF && !SILVERLIGHT && !PORTABLE
         /// <summary>
         /// Returns a DelayedConstraint with the specified delay time.
         /// </summary>

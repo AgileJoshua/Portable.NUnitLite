@@ -87,11 +87,11 @@ namespace NUnit.Framework.Internal
         /// <param name="assembly">The assembly</param>
         /// <returns>An AssemblyName</returns>
         public static AssemblyName GetAssemblyName(Assembly assembly)
-        {
-#if SILVERLIGHT
+		{
+#if SILVERLIGHT || PORTABLE
             return new AssemblyName(assembly.FullName);
 #else
-            return assembly.GetName();
+			return assembly.GetName();
 #endif
         }
 

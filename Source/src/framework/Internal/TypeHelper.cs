@@ -301,7 +301,7 @@ namespace NUnit.Framework.Internal
         /// <returns></returns>
         public static Array GetEnumValues(Type enumType)
         {
-#if NETCF || SILVERLIGHT
+#if NETCF || SILVERLIGHT || PORTABLE
             FieldInfo[] fields = enumType.GetFields(BindingFlags.Public | BindingFlags.Static);
 
             Array enumValues = Array.CreateInstance(enumType, fields.Length);
@@ -323,7 +323,7 @@ namespace NUnit.Framework.Internal
         /// <returns></returns>
         public static string[] GetEnumNames(Type enumType)
         {
-#if NETCF || SILVERLIGHT
+#if NETCF || SILVERLIGHT || PORTABLE
             FieldInfo[] fields = enumType.GetFields(BindingFlags.Public | BindingFlags.Static);
 
             string[] names = new string[fields.Length];
